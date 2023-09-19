@@ -33,13 +33,19 @@ def submit_attendance():
 
         # 從 JSON 資料中提取各種欄位
         tz = pytz.timezone('Asia/Taipei')  # 以台灣為例
-        打卡時間 = datetime.now(tz).strftime('%Y/%m/%d %p %I:%M:%S')
+        打卡時間 = datetime.now(tz)
         員工姓名列表 = data.get('employeeName')  # 這現在是一個列表
         出缺勤狀況 = data.get('attendanceStatus')
         假別 = data.get('workOption')
         開始時間 = data.get('StartTime') or data.get('dateTimePicker1')
         結束時間 = data.get('EndTime') or data.get('dateTimePicker2')
         WFH原因 = data.get('WFHSection')
+        
+        # 根據時間是上午還是下午添加上午/下午，並將時間格式化
+        if 打卡時間.hour < 12:
+            formatted_time = 打卡時間.strftime('%Y/%m/%d 上午 %I:%M:%S')
+        else:
+            formatted_time = 打卡時間.strftime('%Y/%m/%d 下午 %I:%M:%S')
         
         
         if 員工姓名列表:
