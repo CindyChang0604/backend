@@ -33,7 +33,7 @@ def submit_attendance():
 
         # 從 JSON 資料中提取各種欄位
         tz = pytz.timezone('Asia/Taipei')  # 以台灣為例
-        打卡時間 = datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S')
+        打卡時間 = datetime.now(tz).strftime('%Y/%m/%d %p %I:%M:%S')
         員工姓名列表 = data.get('employeeName')  # 這現在是一個列表
         出缺勤狀況 = data.get('attendanceStatus')
         假別 = data.get('workOption')
