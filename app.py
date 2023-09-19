@@ -44,8 +44,10 @@ def submit_attendance():
         # 根據時間是上午還是下午添加上午/下午，並將時間格式化
         if 打卡時間.hour < 12:
             打卡時間 = 打卡時間.strftime('%Y/%m/%d 上午 %I:%M:%S')
+            打卡時間 = 打卡時間.replace('/0', '/').replace(' 上午 0', ' 上午 ')
         else:
             打卡時間 = 打卡時間.strftime('%Y/%m/%d 下午 %I:%M:%S')
+            打卡時間 = 打卡時間.replace('/0', '/').replace(' 上午 0', ' 上午 ')
         
         
         if 員工姓名列表:
